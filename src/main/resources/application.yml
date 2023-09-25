@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: capstone-discovery
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+#config for healcheck
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include:
+          [ 'configprops', 'env', 'health', 'info']
+
+#config for logging
+logging:
+  file:
+    path: ./logs
+    name: capstone-discovery
+  level:
+    ROOT: DEBUG
+    com.capstone.discovery: DEBUG
