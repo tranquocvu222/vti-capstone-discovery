@@ -46,9 +46,6 @@ capstone-discovery*
 ######################
 .gradle/
 build/
-gradlew
-gradlew.bat
-settings.gradle
 gradle
 
 
