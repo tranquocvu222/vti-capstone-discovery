@@ -46,7 +46,6 @@ capstone-discovery*
 ######################
 .gradle/
 build/
-gradle
 
 
 ######################
@@ -57,12 +56,3 @@ gradle
 *.ear
 *.db
 
-######################
-# Gradle Wrapper
-######################
-!gradle/wrapper/gradle-wrapper.jar
-
-######################
-# Maven Wrapper
-######################
-!.mvn/wrapper/maven-wrapper.jar
