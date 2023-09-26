@@ -17,7 +17,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh './gradlew wrapper --gradle-version=8.2.1'
+                sh 'java --version'
                 sh './gradlew test'
             }
         }
