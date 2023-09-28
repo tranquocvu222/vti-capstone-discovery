@@ -30,21 +30,14 @@ pipeline {
 
        stage('Build and Push Image to ECR') {
            steps {
-               script {
-
-                  // Set AWS credentials as environment variables
-
-                   withEnv(["AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}",
-                            "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}",
-                            "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}"]
-                            ) {
-
+            withCredentials([usernamePassword(credentialsId: 'aws-ecr-credentials', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                script {
                    sh 'docker login -u AWS -p $(aws ecr get-login-password --region ap-northeast-3) 639136264313.dkr.ecr.ap-northeast-3.amazonaws.com'
                    sh 'docker build -t service-discovery-dev .'
                    sh 'docker tag service-discovery-dev:latest 639136264313.dkr.ecr.ap-northeast-3.amazonaws.com/service-discovery-dev:""$BUILD_ID""'
                    sh 'docker push 639136264313.dkr.ecr.ap-northeast-3.amazonaws.com/service-discovery-dev:""$BUILD_ID""'
-                  }
-               }
+                 }
+             }
            }
         }
      }
