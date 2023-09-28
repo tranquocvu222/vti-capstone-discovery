@@ -17,6 +17,7 @@ pipeline {
 
         stage('Test') {
             steps {
+                sh 'echo $PATH'
                 sh './gradlew test'
             }
         }
