@@ -17,8 +17,6 @@ pipeline {
 
         stage('Test') {
             steps {
-                def customPath = '/usr/bin'
-                env.PATH = "${customPath}:${env.PATH}"
                 sh 'echo $PATH'
                 sh './gradlew test'
             }
