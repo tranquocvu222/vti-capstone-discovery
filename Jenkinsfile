@@ -33,8 +33,8 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'aws-ecr-credentials', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 script {
                    sh 'aws ecr get-login-password --region ap-northeast-3 | docker login --username AWS --password-stdin 639136264313.dkr.ecr.ap-northeast-3.amazonaws.com'
-                   sh 'docker build -t service-discovery-dev .'
-                   sh 'docker tag service-discovery-dev:latest 639136264313.dkr.ecr.ap-northeast-3.amazonaws.com/develop-ecr:""$BUILD_ID""'
+                   sh 'docker build -t develop-ecr .'
+                   sh 'docker tag develop-ecr:latest 639136264313.dkr.ecr.ap-northeast-3.amazonaws.com/develop-ecr:""$BUILD_ID""'
                    sh 'docker push 639136264313.dkr.ecr.ap-northeast-3.amazonaws.com/develop-ecr:""$BUILD_ID""'
                  }
              }
